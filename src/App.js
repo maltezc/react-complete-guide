@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import './App.css';
 import Person from './Person/Person'; //first letter is capitalized so it identifies as a custom component
 
+
+
 class App extends Component {
     state = { // use state carefully
         persons: [
