@@ -10,7 +10,9 @@ class App extends Component {
             { name: 'Max', age: 28 },
             { name: 'Manu', age: 29 },
             { name: 'Stephanie', age: 26 }
-        ]
+        ],
+        otherState: 'some other value',
+        showPersons: false
     }
 
 
@@ -38,6 +40,12 @@ class App extends Component {
         })
     }
 
+    togglePersonHandler = () => {
+        const doesShow = this.state.showPersons;
+        this.setState({showPersons: !doesShow});
+    }
+
+
 
 
   render() {
@@ -56,19 +64,24 @@ class App extends Component {
           <p>This is working!</p>
           <button
               style={style} // stles a specific component. in this case, a button.
-              onClick={() => this.switchNameHandler('Maximilian!!')}>Switch Name</button> {/*dont add () after this.switchNameHandler. it will execute when the DOM is loaded*/}
-      <Person
-          name={this.state.persons[0].name}
-          age={this.state.persons[0].age}/> {/*This, along with the Person import brings in the Person component */}
-      <Person
-          name={this.state.persons[1].name}
-          age={this.state.persons[1].age}
-          click={this.switchNameHandler.bind(this,'Max!')}
-          changed={this.nameChangedHandler} > My hobbies: Racing</Person> {/*use bind over function call above where ever possible*/}
-      <Person
-          name={this.state.persons[2].name}
-          age={this.state.persons[2].age}/>
-      </div>
+              onClick = {this.togglePersonHandler}>Toggle Persons</button> {/*dont add () after this.switchNameHandler. it will execute when the DOM is loaded*/}
+      {
+      this.state.showPersons === true ?
+          <div>
+              <Person
+                  name={this.state.persons[0].name}
+                  age={this.state.persons[0].age}/> {/*This, along with the Person import brings in the Person component */}
+              <Person
+                  name={this.state.persons[1].name}
+                  age={this.state.persons[1].age}
+                  click={this.switchNameHandler.bind(this,'Max!')}
+                  changed={this.nameChangedHandler} > My hobbies: Racing</Person> {/*use bind over function call above where ever possible*/}
+              <Person
+                  name={this.state.persons[2].name}
+                  age={this.state.persons[2].age}/>
+          </div> : null
+      }
+    </div>
 
     );
   // return React.createElement('div',null, 'h1', 'i\'m a react app');
