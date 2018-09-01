@@ -41,11 +41,22 @@ class App extends Component {
 
 
   render() {
+        const style = {  // must be written in jsx if it is inline like this
+            backgroundColor: 'white',
+            font: 'inherit',
+            border: '1px solid blue',
+            padding: '8px',
+            cursor: 'pointer' // changes to hand pointer on roll over
+        };
+
+
     return (
       <div className="App"> {/* next everything in one root element*/}
         <h1>Hi, i'm a react app</h1>
           <p>This is working!</p>
-          <button onClick={() => this.switchNameHandler('Maximilian!!')}>Switch Name</button> {/*dont add () after this.switchNameHandler. it will execute when the DOM is loaded*/}
+          <button
+              style={style} // stles a specific component. in this case, a button.
+              onClick={() => this.switchNameHandler('Maximilian!!')}>Switch Name</button> {/*dont add () after this.switchNameHandler. it will execute when the DOM is loaded*/}
       <Person
           name={this.state.persons[0].name}
           age={this.state.persons[0].age}/> {/*This, along with the Person import brings in the Person component */}
