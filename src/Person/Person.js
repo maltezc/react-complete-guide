@@ -7,7 +7,7 @@ const person = (props) => { // research arrow functions. using props means you b
     return (
 
         <div>
-            <p> i'm a {props.name} and i am {props.age} years old!</p>
+            <p onClick={props.click}> i'm a {props.name} and i am {props.age} years old!</p>
     {/*to use js stuff inline, wrap in curly braces, can only do simple expressions for now*/}
             <p>{props.children}</p> {/* children refers to any elements between the opening and closing tags of component*/}
         </div>
