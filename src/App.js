@@ -16,18 +16,7 @@ class App extends Component {
     }
 
 
-    switchNameHandler = (newName) => { // handles switch name button function
-        // console.log('was clicked')
-        // this.state.persons[0].name = 'Maximilian' //calls state from above. doesnt work
-    this.setState({ // setState changes the state.
-        persons: [
-            { name: newName, age: 28 },
-            { name: 'Manu', age: 29 },
-            { name: 'Stephanie', age: 27 }
-        ]
-    })
 
-    }
 
     nameChangedHandler = (event) => {
         this.setState( {
@@ -40,12 +29,17 @@ class App extends Component {
         })
     }
 
+    deletePersonHandler = (personIndex) => {
+        // const persons = this.state.persons.slice();
+        const persons = [...this.state.persons]; // always update state with an immutable fashion like so.
+        persons.splice(personIndex, 1); // will remove 1 element from the array
+        this.setState({persons: persons});
+    }
+
     togglePersonHandler = () => {
         const doesShow = this.state.showPersons;
         this.setState({showPersons: !doesShow});
     }
-
-
 
 
   render() {
@@ -62,17 +56,12 @@ class App extends Component {
     if (this.state.showPersons) {
         persons = (
           <div>
-              <Person
-                  name={this.state.persons[0].name}
-                  age={this.state.persons[0].age}/> {/*This, along with the Person import brings in the Person component */}
-              <Person
-                  name={this.state.persons[1].name}
-                  age={this.state.persons[1].age}
-                  click={this.switchNameHandler.bind(this,'Max!')}
-                  changed={this.nameChangedHandler} > My hobbies: Racing</Person> {/*use bind over function call above where ever possible*/}
-              <Person
-                  name={this.state.persons[2].name}
-                  age={this.state.persons[2].age}/>
+              {this.state.persons.map((person, index) => {
+                  return <Person
+                  click={() => this.deletePersonHandler(index)}
+                  name={person.name}
+                  age={person.age}  />
+              })}
           </div>
 
         )
