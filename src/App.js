@@ -57,16 +57,10 @@ class App extends Component {
             cursor: 'pointer' // changes to hand pointer on roll over
         };
 
+    let persons = null; // using persons as a variable to turn on and off
 
-    return (
-      <div className="App"> {/* next everything in one root element*/}
-        <h1>Hi, i'm a react app</h1>
-          <p>This is working!</p>
-          <button
-              style={style} // stles a specific component. in this case, a button.
-              onClick = {this.togglePersonHandler}>Toggle Persons</button> {/*dont add () after this.switchNameHandler. it will execute when the DOM is loaded*/}
-      {
-      this.state.showPersons === true ?
+    if (this.state.showPersons) {
+        persons = (
           <div>
               <Person
                   name={this.state.persons[0].name}
@@ -79,8 +73,19 @@ class App extends Component {
               <Person
                   name={this.state.persons[2].name}
                   age={this.state.persons[2].age}/>
-          </div> : null
-      }
+          </div>
+
+        )
+    }
+
+    return (
+      <div className="App"> {/* next everything in one root element*/}
+        <h1>Hi, i'm a react app</h1>
+          <p>This is working!</p>
+          <button
+              style={style} // stles a specific component. in this case, a button.
+              onClick = {this.togglePersonHandler}>Toggle Persons</button> {/*dont add () after this.switchNameHandler. it will execute when the DOM is loaded*/}
+      {persons}
     </div>
 
     );
