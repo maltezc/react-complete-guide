@@ -6,10 +6,10 @@ import Person from './Person/Person'; //first letter is capitalized so it identi
 
 class App extends Component {
     state = { // use state carefully
-        persons: [
-            { name: 'Max', age: 28 },
-            { name: 'Manu', age: 29 },
-            { name: 'Stephanie', age: 26 }
+        persons: [ // id must be in for props so React can track what elements what has been added, deleted, or updated
+            { id: 'asdf', name: 'Max', age: 28 },
+            { id: 'adsfe', name: 'Manu', age: 29 },
+            { id: 'asdf1', name: 'Stephanie', age: 26 }
         ],
         otherState: 'some other value',
         showPersons: false
@@ -60,7 +60,8 @@ class App extends Component {
                   return <Person
                   click={() => this.deletePersonHandler(index)}
                   name={person.name}
-                  age={person.age}  />
+                  age={person.age}
+                  key={person.id} />
               })}
           </div>
 
@@ -72,7 +73,7 @@ class App extends Component {
         <h1>Hi, i'm a react app</h1>
           <p>This is working!</p>
           <button
-              style={style} // stles a specific component. in this case, a button.
+              style={style} // styles a specific component. in this case, a button.
               onClick = {this.togglePersonHandler}>Toggle Persons</button> {/*dont add () after this.switchNameHandler. it will execute when the DOM is loaded*/}
       {persons}
     </div>
