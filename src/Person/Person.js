@@ -1,6 +1,8 @@
 // folder is first letter capitalized
 //file is first letter capitalized
 import React from 'react';
+import Radium from 'radium';
+
 import './Person.css'; // MUST ALWAYS IMPORT CSS
 
 const person = (props) => { // research arrow functions. using props means you bring in the properties of the component
@@ -16,7 +18,7 @@ const person = (props) => { // research arrow functions. using props means you b
 
 }
 
-export default person;
+export default Radium(person);
 
 
 // When using class-based components, its this.props

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import './App.css';
+import Radium from 'radium';
 import Person from './Person/Person'; //first letter is capitalized so it identifies as a custom component
 
 
@@ -60,7 +61,11 @@ class App extends Component {
             font: 'inherit',
             border: '1px solid blue',
             padding: '8px',
-            cursor: 'pointer' // changes to hand pointer on roll over
+            cursor: 'pointer', // changes to hand pointer on roll over
+            ':hover': { // because they start with a colon, they are not valid strings, thus must wrap with quotes
+                backgroundColor: 'lightgreen',
+                color: 'black',
+            }
         };
 
     let persons = null; // using persons as a variable to turn on and off
@@ -81,6 +86,10 @@ class App extends Component {
         );
 
         style.backgroundColor = 'red'; // accessing js/css style variable through js
+        style[':hover'] = { // must wrap on quotes
+                backgroundColor: 'salmon',
+                color: 'black',
+            }
     }
 
     let classes = [];
@@ -108,5 +117,6 @@ class App extends Component {
   }
 }
 
-export default App;
+export default Radium(App);
+// Radium wrapping your app to add some 3rd party capabilities
 // jsx = javascript + html + css
