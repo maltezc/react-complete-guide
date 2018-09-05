@@ -55,7 +55,8 @@ class App extends Component {
 
   render() {
         const style = {  // must be written in jsx if it is inline like this
-            backgroundColor: 'white',
+            backgroundColor: 'green',
+            color:'white',
             font: 'inherit',
             border: '1px solid blue',
             padding: '8px',
@@ -75,15 +76,26 @@ class App extends Component {
                   key={person.id}  // Is necessary to track prop from "class App extends Component"
                   changed={(event) => this.nameChangedHandler(event, person.id)} />
               })}
-          </div>
 
-        )
+          </div>
+        );
+
+        style.backgroundColor = 'red'; // accessing js/css style variable through js
     }
+
+    let classes = [];
+    if (this.state.persons.length <= 2) {
+        classes.push('red') // classes = ['red']
+    }
+    if (this.state.persons.length <=1) {
+        classes.push('bold'); // classes = ['red', 'bold']
+    }
+
 
     return (
       <div className="App"> {/* next everything in one root element*/}
         <h1>Hi, i'm a react app</h1>
-          <p>This is working!</p>
+          <p className={classes.join(' ')}>This is working!</p>
           <button
               style={style} // styles a specific component. in this case, a button.
               onClick = {this.togglePersonHandler}>Toggle Persons</button> {/*dont add () after this.switchNameHandler. it will execute when the DOM is loaded*/}
