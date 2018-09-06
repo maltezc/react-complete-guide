@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './App.css';
-import Radium from 'radium';
+import Radium, {StyleRoot} from 'radium';
 import Person from './Person/Person'; //first letter is capitalized so it identifies as a custom component
 
 
@@ -102,14 +102,16 @@ class App extends Component {
 
 
     return (
-      <div className="App"> {/* next everything in one root element*/}
-        <h1>Hi, i'm a react app</h1>
-          <p className={classes.join(' ')}>This is working!</p>
-          <button
-              style={style} // styles a specific component. in this case, a button.
-              onClick = {this.togglePersonHandler}>Toggle Persons</button> {/*dont add () after this.switchNameHandler. it will execute when the DOM is loaded*/}
-      {persons}
-    </div>
+        <StyleRoot> {/* must wrap in StyleRoot for Radium*/}
+          <div className="App"> {/* next everything in one root element*/}
+            <h1>Hi, i'm a react app</h1>
+              <p className={classes.join(' ')}>This is working!</p>
+              <button
+                  style={style} // styles a specific component. in this case, a button.
+                  onClick = {this.togglePersonHandler}>Toggle Persons</button> {/*dont add () after this.switchNameHandler. it will execute when the DOM is loaded*/}
+                {persons}
+            </div>
+        </StyleRoot>
 
     );
   // return React.createElement('div',null, 'h1', 'i\'m a react app');
