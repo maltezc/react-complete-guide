@@ -1,29 +1,21 @@
 // folder is first letter capitalized
 //file is first letter capitalized
 import React from 'react';
-import Radium from 'radium';
 
 import './Person.css'; // MUST ALWAYS IMPORT CSS
 
-const person = (props) => { // research arrow functions. using props means you bring in the properties of the component
-    const style = {
-        '@media (min-width: 500px)': { // used for Radium injection
-            width: '450px'
-        }
-    }
 
     return (
-        <div className="Person" style={style}>
+        <div className="Person">
             <p onClick={props.click}> i'm a {props.name} and i am {props.age} years old!</p>
     {/*to use js stuff inline, wrap in curly braces, can only do simple expressions for now*/}
             <p>{props.children}</p> {/* children refers to any elements between the opening and closing tags of component*/}
             <input type="text" onChange={props.changed} value={props.name} />
         </div>
-)
+  )
+};
 
-}
-
-export default Radium(person);
+export default person;
 
 
 // When using class-based components, its this.props

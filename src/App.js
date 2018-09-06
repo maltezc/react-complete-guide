@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import './App.css';
-import Radium, {StyleRoot} from 'radium';
 import Person from './Person/Person'; //first letter is capitalized so it identifies as a custom component
 
 
@@ -62,10 +61,7 @@ class App extends Component {
             border: '1px solid blue',
             padding: '8px',
             cursor: 'pointer', // changes to hand pointer on roll over
-            ':hover': { // because they start with a colon, they are not valid strings, thus must wrap with quotes
-                backgroundColor: 'lightgreen',
-                color: 'black',
-            }
+
         };
 
     let persons = null; // using persons as a variable to turn on and off
@@ -86,10 +82,7 @@ class App extends Component {
         );
 
         style.backgroundColor = 'red'; // accessing js/css style variable through js
-        style[':hover'] = { // must wrap on quotes
-                backgroundColor: 'salmon',
-                color: 'black',
-            }
+
     }
 
     let classes = [];
@@ -102,7 +95,6 @@ class App extends Component {
 
 
     return (
-        <StyleRoot> {/* must wrap in StyleRoot for Radium*/}
           <div className="App"> {/* next everything in one root element*/}
             <h1>Hi, i'm a react app</h1>
               <p className={classes.join(' ')}>This is working!</p>
@@ -111,7 +103,6 @@ class App extends Component {
                   onClick = {this.togglePersonHandler}>Toggle Persons</button> {/*dont add () after this.switchNameHandler. it will execute when the DOM is loaded*/}
                 {persons}
             </div>
-        </StyleRoot>
 
     );
   // return React.createElement('div',null, 'h1', 'i\'m a react app');
@@ -119,6 +110,6 @@ class App extends Component {
   }
 }
 
-export default Radium(App);
+export default App;
 // Radium wrapping your app to add some 3rd party capabilities
 // jsx = javascript + html + css
