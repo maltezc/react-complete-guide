@@ -4,7 +4,7 @@ import React from 'react';
 
 import './Person.css'; // MUST ALWAYS IMPORT CSS
 
-
+const person = ( props ) => {
     return (
         <div className="Person">
             <p onClick={props.click}> i'm a {props.name} and i am {props.age} years old!</p>
