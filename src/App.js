@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import './App.css';
+import classes from './App.css';
 import Person from './Person/Person'; //first letter is capitalized so it identifies as a custom component
 
 
@@ -85,19 +85,19 @@ class App extends Component {
 
     }
 
-    let classes = [];
+    let assignedClasses = [];
     if (this.state.persons.length <= 2) {
-        classes.push('red') // classes = ['red']
+        assignedClasses.push( classes.red ) // classes = ['red']
     }
     if (this.state.persons.length <=1) {
-        classes.push('bold'); // classes = ['red', 'bold']
+        assignedClasses.push( classes.bold ); // classes = ['red', 'bold']
     }
 
 
     return (
-          <div className="App"> {/* next everything in one root element*/}
+          <div className={classes.App}> {/* next everything in one root element*/}
             <h1>Hi, i'm a react app</h1>
-              <p className={classes.join(' ')}>This is working!</p>
+              <p className={assignedClasses.join(' ')}>This is working!</p>
               <button
                   style={style} // styles a specific component. in this case, a button.
                   onClick = {this.togglePersonHandler}>Toggle Persons</button> {/*dont add () after this.switchNameHandler. it will execute when the DOM is loaded*/}
