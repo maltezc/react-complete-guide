@@ -54,17 +54,8 @@ class App extends Component {
 
 
   render() {
-        const style = {  // must be written in jsx if it is inline like this
-            backgroundColor: 'green',
-            color:'white',
-            font: 'inherit',
-            border: '1px solid blue',
-            padding: '8px',
-            cursor: 'pointer', // changes to hand pointer on roll over
-
-        };
-
     let persons = null; // using persons as a variable to turn on and off
+    let btnClass = '';
 
     if (this.state.showPersons) {
         persons = (
@@ -80,8 +71,7 @@ class App extends Component {
 
           </div>
         );
-
-        style.backgroundColor = 'red'; // accessing js/css style variable through js
+    btnClass = classes.Red;
 
     }
 
@@ -99,7 +89,7 @@ class App extends Component {
             <h1>Hi, i'm a react app</h1>
               <p className={assignedClasses.join(' ')}>This is working!</p>
               <button
-                  style={style} // styles a specific component. in this case, a button.
+                  className={btnClass}
                   onClick = {this.togglePersonHandler}>Toggle Persons</button> {/*dont add () after this.switchNameHandler. it will execute when the DOM is loaded*/}
                 {persons}
             </div>
