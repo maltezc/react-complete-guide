@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import classes from './App.css';
-import Person from './Person/Person'; //first letter is capitalized so it identifies as a custom component
-
+import Person from '../components/Persons/Person/Person'; //first letter is capitalized so it identifies as a custom component
+// import ErrorBoundary from './ErrorBoundary/ErrorBoundary';
 
 
 class App extends Component {
@@ -61,13 +61,14 @@ class App extends Component {
         persons = (
           <div>
               {this.state.persons.map((person, index) => {
-                  return <Person
-                  click={() => this.deletePersonHandler(index)}
-                  name={person.name}
-                  age={person.age}
-                  key={person.id}  // Is necessary to track prop from "class App extends Component"
-                  changed={(event) => this.nameChangedHandler(event, person.id)} />
-              })}
+                  return <Person // when wrapping element with error boundary(from 6.75, key always has to be on outer element
+
+                      click={() => this.deletePersonHandler(index)}
+                      name={person.name}
+                      age={person.age}
+                      key={person.id}  // Is necessary to track prop from "class App extends Component"
+                      changed={(event) => this.nameChangedHandler(event, person.id)} />
+                        })}
 
           </div>
         );
