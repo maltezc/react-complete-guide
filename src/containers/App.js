@@ -6,6 +6,8 @@ import Cockpit from '../components/Cockpit/Cockpit';
 // import ErrorBoundary from './ErrorBoundary/ErrorBoundary';
 // use functional components wherever possible
 
+import WithClass from '../hoc/WithClass'
+
 class App extends PureComponent {
     constructor(props) {
         super(props);
@@ -104,14 +106,11 @@ class App extends PureComponent {
                 persons={this.state.persons}
                 clicked={this.deletePersonHandler}
                 changed={this.nameChangedHandler} />;
-
     }
 
 
-
-
     return (
-        <div className={classes.App}> {/* next everything in one root element*/}
+        <WithClass classes={classes.App}>
             <button onClick={() => this.setState({showPersons: true})}>Show Persons </button>
             <Cockpit
                 appTitle={this.props.title}// cannot use props inside render method
@@ -119,7 +118,7 @@ class App extends PureComponent {
                 persons={this.state.persons}
                 clicked={this.togglePersonHandler}/>
             {persons}
-        </div>
+        </WithClass>
 
     );
   // return React.createElement('div',null, 'h1', 'i\'m a react app');
