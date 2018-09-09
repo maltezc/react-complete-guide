@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import classes from './App.css';
-import Person from '../components/Persons/Person/Person'; //first letter is capitalized so it identifies as a custom component
+import Persons from '../components/Persons/Persons'; //first letter is capitalized so it identifies as a custom component
+import Cockpit from '../components/Cockpit/Cockpit';
 // import ErrorBoundary from './ErrorBoundary/ErrorBoundary';
 
 
@@ -55,45 +56,26 @@ class App extends Component {
 
   render() {
     let persons = null; // using persons as a variable to turn on and off
-    let btnClass = '';
 
     if (this.state.showPersons) {
-        persons = (
-          <div>
-              {this.state.persons.map((person, index) => {
-                  return <Person // when wrapping element with error boundary(from 6.75, key always has to be on outer element
-
-                      click={() => this.deletePersonHandler(index)}
-                      name={person.name}
-                      age={person.age}
-                      key={person.id}  // Is necessary to track prop from "class App extends Component"
-                      changed={(event) => this.nameChangedHandler(event, person.id)} />
-                        })}
-
-          </div>
-        );
-    btnClass = classes.Red;
+        persons = <Persons
+                persons={this.state.persons}
+                clicked={this.deletePersonHandler}
+                changed={this.nameChangedHandler} />;
 
     }
 
-    let assignedClasses = [];
-    if (this.state.persons.length <= 2) {
-        assignedClasses.push( classes.red ) // classes = ['red']
-    }
-    if (this.state.persons.length <=1) {
-        assignedClasses.push( classes.bold ); // classes = ['red', 'bold']
-    }
+
 
 
     return (
-          <div className={classes.App}> {/* next everything in one root element*/}
-            <h1>Hi, i'm a react app</h1>
-              <p className={assignedClasses.join(' ')}>This is working!</p>
-              <button
-                  className={btnClass}
-                  onClick = {this.togglePersonHandler}>Toggle Persons</button> {/*dont add () after this.switchNameHandler. it will execute when the DOM is loaded*/}
-                {persons}
-            </div>
+        <div className={classes.App}> {/* next everything in one root element*/}
+            <Cockpit
+                showPersons={this.state.showPersons}
+                persons={this.state.persons}
+                clicked={this.togglePersonHandler}/>
+            {persons}
+        </div>
 
     );
   // return React.createElement('div',null, 'h1', 'i\'m a react app');
