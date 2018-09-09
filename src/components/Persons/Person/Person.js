@@ -21,11 +21,14 @@ class Person extends Component {
 
     componentDidMount() {
         console.log('[Person.js] Inside componentDidMount()');
+        if ( this.props.position === 0 ) {
+            this.inputElement.focus();
+        };
     }
 
-    componentWillReceiveProps(nextProps) {
-         console.log('[UPDATE Persons.js] Inside ComponentWillReceiveProps', nextProps)
-    }
+    // componentWillReceiveProps(nextProps) {
+    //      console.log('[UPDATE Persons.js] Inside ComponentWillReceiveProps', nextProps)
+    // }
 
 
 
@@ -36,7 +39,11 @@ class Person extends Component {
                 <p onClick={this.props.click}> I am {this.props.name} and i am {this.props.age} years old!</p>
                 {/*to use js stuff inline, wrap in curly braces, can only do simple expressions for now*/}
                 <p>{this.props.children}</p> {/* children refers to any elements between the opening and closing tags of component*/}
-                <input type="text" onChange={this.props.changed} value={this.props.name} />
+                <input
+                    ref={(inp) => { this.inputElement = inp}} // references are only available in STATEFUL (class or extends) components
+                    type="text"
+                    onChange={this.props.changed}
+                    value={this.props.name} />
             </Aux>
         )
     }
