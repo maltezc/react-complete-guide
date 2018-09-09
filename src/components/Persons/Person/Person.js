@@ -1,6 +1,7 @@
 // folder is first letter capitalized
 //file is first letter capitalized
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 
 import classes from './Person.css'; // MUST ALWAYS IMPORT CSS
 import withClass from '../../../hoc/withClass'
@@ -41,6 +42,13 @@ class Person extends Component {
     }
 }
 
+Person.propTypes = { // PropTypes will set what type of prop something can be
+    click: PropTypes.func,
+    name: PropTypes.string,
+    age: PropTypes.number,
+    changed: PropTypes.func,
+
+}
 
 export default withClass(Person, classes.Person);
 

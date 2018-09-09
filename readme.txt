@@ -10,3 +10,8 @@ https://github.com/css-modules/css-modules
 
 Error boundaries - https://reactjs.org/docs/error-boundaries.html
 chrome dev tool debugging - https://developers.google.com/web/tools/chrome-devtools/javascript/
+
+use --save from npm install "--save" >packageName< to save the package in the package.json file
+**i think this is what goes to others if they want to download and use on their local machine
+
+ch 7.100 - Available Prop Types - https://reactjs.org/docs/typechecking-with-proptypes.html
