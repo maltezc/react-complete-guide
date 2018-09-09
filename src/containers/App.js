@@ -30,6 +30,19 @@ class App extends Component {
         console.log('[App.js] Inside componentDidMount()');
     }
 
+    shouldComponentUpdate(nextProps, nextState) {
+        console.log('[UPDATE  App.js] Inside shouldComponentUpdate', nextProps, nextState)
+        return true;
+    }
+
+    componentWillUpdate(nextProps, nextState) {
+        console.log('[UPDATE App.js] Inside componentWillUpdate', nextProps, nextState)
+    }
+
+    componentDidUpdate() {
+        console.log('[UPDATE App.js] Inside componentDidlUpdate')
+    }
+
     // state = { // use state carefully
     //     persons: [ // id must be in for props so React can track what elements what has been added, deleted, or updated
     //         { id: 'asdf', name: 'Max', age: 28 },
