@@ -19,7 +19,7 @@ const cockpit = ( props ) => { // "props" needs to be in the () if editing props
 
     return (
         <div className={classes.Cockpit}>
-            <h1>Hi, i'm a react app</h1>
+            <h1>{  props.appTitle }</h1>
               <p className={assignedClasses.join(' ')}>This is working!</p>
               <button
                   className={btnClass}

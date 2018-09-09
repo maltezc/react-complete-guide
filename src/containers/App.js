@@ -71,6 +71,7 @@ class App extends Component {
     return (
         <div className={classes.App}> {/* next everything in one root element*/}
             <Cockpit
+                appTitle={this.props.title}// cannot use props inside render method
                 showPersons={this.state.showPersons}
                 persons={this.state.persons}
                 clicked={this.togglePersonHandler}/>
