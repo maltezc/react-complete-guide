@@ -4,7 +4,7 @@ import classes from './App.css';
 import Persons from '../components/Persons/Persons'; //first letter is capitalized so it identifies as a custom component
 import Cockpit from '../components/Cockpit/Cockpit';
 // import ErrorBoundary from './ErrorBoundary/ErrorBoundary';
-
+// use functional components wherever possible
 
 class App extends Component {
     constructor(props) {
