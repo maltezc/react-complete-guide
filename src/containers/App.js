@@ -6,7 +6,8 @@ import Cockpit from '../components/Cockpit/Cockpit';
 // import ErrorBoundary from './ErrorBoundary/ErrorBoundary';
 // use functional components wherever possible
 
-import WithClass from '../hoc/WithClass'
+import Aux from '../hoc/Aux'
+import withClass from '../hoc/withClass'
 
 class App extends PureComponent {
     constructor(props) {
@@ -110,7 +111,7 @@ class App extends PureComponent {
 
 
     return (
-        <WithClass classes={classes.App}>
+        <Aux>
             <button onClick={() => this.setState({showPersons: true})}>Show Persons </button>
             <Cockpit
                 appTitle={this.props.title}// cannot use props inside render method
@@ -118,14 +119,13 @@ class App extends PureComponent {
                 persons={this.state.persons}
                 clicked={this.togglePersonHandler}/>
             {persons}
-        </WithClass>
-
+        </Aux>
     );
   // return React.createElement('div',null, 'h1', 'i\'m a react app');
 
   }
 }
 
-export default App;
+export default withClass(App, classes.App);
 // Radium wrapping your app to add some 3rd party capabilities
 // jsx = javascript + html + css

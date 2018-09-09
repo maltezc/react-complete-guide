@@ -3,7 +3,8 @@
 import React, { Component } from 'react';
 
 import classes from './Person.css'; // MUST ALWAYS IMPORT CSS
-import WithClass from '../../../hoc/WithClass'
+import withClass from '../../../hoc/withClass'
+import Aux from '../../../hoc/Aux'
 
 class Person extends Component {
 
@@ -30,18 +31,18 @@ class Person extends Component {
     render () {
         console.log('[Person.js] Inside render()');
         return (
-            <WithClass classes={classes.Person}>
+            <Aux classes={classes.Person}>
                 <p onClick={this.props.click}> I am {this.props.name} and i am {this.props.age} years old!</p>
                 {/*to use js stuff inline, wrap in curly braces, can only do simple expressions for now*/}
                 <p>{this.props.children}</p> {/* children refers to any elements between the opening and closing tags of component*/}
                 <input type="text" onChange={this.props.changed} value={this.props.name} />
-            </WithClass>
+            </Aux>
         )
     }
 }
 
 
-export default Person;
+export default withClass(Person, classes.Person);
 
 
 // When using class-based components, its this.props
