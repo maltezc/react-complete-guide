@@ -1,12 +1,13 @@
 import React from 'react';
 
 import classes from'./Cockpit.css';
+import Aux from '../../hoc/Aux';
 
 const cockpit = ( props ) => { // "props" needs to be in the () if editing props.
     const assignedClasses = [];
-    let btnClass = '';
+    let btnClass = classes.Button;
     if (props.showPersons) {
-        btnClass = classes.Red;
+        btnClass = [classes.Button, classes.Red].join(' ');
     }
 
 
@@ -18,13 +19,13 @@ const cockpit = ( props ) => { // "props" needs to be in the () if editing props
     }
 
     return (
-        <div className={classes.Cockpit}>
-            <h1>{  props.appTitle }</h1>
-              <p className={assignedClasses.join(' ')}>This is working!</p>
-              <button
-                  className={btnClass}
-                  onClick={props.clicked}>Toggle Persons</button> {/*dont add () after this.switchNameHandler. it will execute when the DOM is loaded*/}
-        </div>
+        <Aux>
+        <h1>{  props.appTitle }</h1>
+        <p className={assignedClasses.join(' ')}>This is working!</p>
+        <button
+              className={btnClass}
+              onClick={props.clicked}>Toggle Persons</button> {/*dont add () after this.switchNameHandler. it will execute when the DOM is loaded*/}
+        </Aux>
     );
 };
 
