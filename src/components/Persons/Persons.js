@@ -1,8 +1,8 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 
 import Person from './Person/Person';
 
-class Persons extends Component {
+class Persons extends PureComponent { // use PureComponents only if you know that updates might not be required. Should be strategically placed
     constructor(props) {
         super(props);
         console.log('[Persons.js] Inside Constructor', props)
@@ -17,10 +17,13 @@ class Persons extends Component {
         console.log('[Persons.js] Inside componentDidMount()');
     }
 
-    shouldComponentUpdate(nextProps, nextState) {
-        console.log('[UPDATE  Persons.js] Inside shouldComponentUpdate', nextProps, nextState)
-        return nextProps.persons !== this.props.persons;
-    }
+    // shouldComponentUpdate(nextProps, nextState) {
+    //     console.log('[UPDATE  Persons.js] Inside shouldComponentUpdate', nextProps, nextState)
+    //     return nextProps.persons !== this.props.persons ||
+    //         nextProps.changed !== this.props.changed ||
+    //         nextProps.clicked !== this.props.clicked;
+    //     // return true;
+    // }
 
     componentWillUpdate(nextProps, nextState) {
         console.log('[UPDATE Persons.js] Inside componentWillUpdate', nextProps, nextState)

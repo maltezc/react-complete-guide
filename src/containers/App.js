@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 
 import classes from './App.css';
 import Persons from '../components/Persons/Persons'; //first letter is capitalized so it identifies as a custom component
@@ -6,7 +6,7 @@ import Cockpit from '../components/Cockpit/Cockpit';
 // import ErrorBoundary from './ErrorBoundary/ErrorBoundary';
 // use functional components wherever possible
 
-class App extends Component {
+class App extends PureComponent {
     constructor(props) {
         super(props);
         console.log('[App.js] Inside Constructor', props)
@@ -30,10 +30,11 @@ class App extends Component {
         console.log('[App.js] Inside componentDidMount()');
     }
 
-    shouldComponentUpdate(nextProps, nextState) {
-        console.log('[UPDATE  App.js] Inside shouldComponentUpdate', nextProps, nextState)
-        return true;
-    }
+    // shouldComponentUpdate(nextProps, nextState) {
+    //     console.log('[UPDATE  App.js] Inside shouldComponentUpdate', nextProps, nextState)
+    //     return nextState.persons !== this.state.persons ||
+    //         nextState.showPersons !== this.state.showPersons;
+    // }
 
     componentWillUpdate(nextProps, nextState) {
         console.log('[UPDATE App.js] Inside componentWillUpdate', nextProps, nextState)
@@ -111,6 +112,7 @@ class App extends Component {
 
     return (
         <div className={classes.App}> {/* next everything in one root element*/}
+            <button onClick={() => this.setState({showPersons: true})}>Show Persons </button>
             <Cockpit
                 appTitle={this.props.title}// cannot use props inside render method
                 showPersons={this.state.showPersons}
