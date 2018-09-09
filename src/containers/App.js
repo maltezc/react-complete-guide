@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+
 import classes from './App.css';
 import Persons from '../components/Persons/Persons'; //first letter is capitalized so it identifies as a custom component
 import Cockpit from '../components/Cockpit/Cockpit';
@@ -6,7 +7,10 @@ import Cockpit from '../components/Cockpit/Cockpit';
 
 
 class App extends Component {
-    state = { // use state carefully
+    constructor(props) {
+        super(props);
+        console.log('[App.js] Inside Constructor', props)
+        this.state = { // use state carefully
         persons: [ // id must be in for props so React can track what elements what has been added, deleted, or updated
             { id: 'asdf', name: 'Max', age: 28 },
             { id: 'adsfe', name: 'Manu', age: 29 },
@@ -15,6 +19,27 @@ class App extends Component {
         otherState: 'some other value',
         showPersons: false
     }
+    }
+
+
+    componentWillMount() {
+        console.log('[App.js] Inside component willmount()');
+    }
+
+    componentDidMount() {
+        console.log('[App.js] Inside componentDidMount()');
+    }
+
+    // state = { // use state carefully
+    //     persons: [ // id must be in for props so React can track what elements what has been added, deleted, or updated
+    //         { id: 'asdf', name: 'Max', age: 28 },
+    //         { id: 'adsfe', name: 'Manu', age: 29 },
+    //         { id: 'asdf1', name: 'Stephanie', age: 26 }
+    //     ],
+    //     otherState: 'some other value',
+    //     showPersons: false
+    // }
+
 
 
 
@@ -55,6 +80,9 @@ class App extends Component {
 
 
   render() {
+
+    console.log('[App.js] inside render()')
+
     let persons = null; // using persons as a variable to turn on and off
 
     if (this.state.showPersons) {
