@@ -29,7 +29,7 @@ class App extends PureComponent {
     }
 
 
-    componentWillMount() {
+    componentWillMount() { // Try not to use this one
         console.log('[App.js] Inside component willmount()');
     }
 
@@ -43,8 +43,24 @@ class App extends PureComponent {
     //         nextState.showPersons !== this.state.showPersons;
     // }
 
-    componentWillUpdate(nextProps, nextState) {
+    componentWillUpdate(nextProps, nextState) { // try to avoid using this one
         console.log('[UPDATE App.js] Inside componentWillUpdate', nextProps, nextState)
+    }
+
+    // avoid using componentWillReceiveProps <-- often used incorrectly
+
+
+    static getDerivedStateFromProps(nextProps, prevState) {
+        console.log('[UPDATE App.js] Inside getDerivedStateFromProps',
+            nextProps,
+            prevState
+        );
+        return prevState;
+    }
+
+    getSnapShotBeforeUpdate() {
+        console.log('[UPDATE App.js] Inside getSnapShotBeforeUpdate',
+        );
     }
 
     componentDidUpdate() {
