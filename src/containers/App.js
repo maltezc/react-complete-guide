@@ -9,6 +9,8 @@ import Cockpit from '../components/Cockpit/Cockpit';
 import Aux from '../hoc/Aux'
 import withClass from '../hoc/WithClass'
 
+export const AuthContext = React.createContext(false); //keyword "export" allows element to be used outside of this file
+
 class App extends PureComponent {
     constructor(props) {
         super(props);
@@ -22,6 +24,7 @@ class App extends PureComponent {
         otherState: 'some other value',
         showPersons: false,
         toggleClicked: 0,
+        authenticated: false,
     }
     }
 
@@ -101,6 +104,9 @@ class App extends PureComponent {
         });
     }
 
+    loginHandler = () => {
+        this.setState({authenticated: true});
+    }
 
   render() {
 
@@ -110,9 +116,10 @@ class App extends PureComponent {
 
     if (this.state.showPersons) {
         persons = <Persons
-                persons={this.state.persons}
-                clicked={this.deletePersonHandler}
-                changed={this.nameChangedHandler} />;
+            persons={this.state.persons}
+            clicked={this.deletePersonHandler}
+            changed={this.nameChangedHandler}
+            />
     }
 
 
@@ -123,8 +130,12 @@ class App extends PureComponent {
                 appTitle={this.props.title}// cannot use props inside render method
                 showPersons={this.state.showPersons}
                 persons={this.state.persons}
-                clicked={this.togglePersonHandler}/>
-            {persons}
+                login={this.loginHandler} // pulled from Cockpit.js
+                clicked={this.togglePersonHandler}
+            />
+            <AuthContext.Provider value={this.state.authenticated}>
+                {persons}
+            </AuthContext.Provider>
         </Aux>
     );
   // return React.createElement('div',null, 'h1', 'i\'m a react app');

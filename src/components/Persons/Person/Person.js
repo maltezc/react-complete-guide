@@ -6,6 +6,7 @@ import PropTypes from 'prop-types';
 import classes from './Person.css'; // MUST ALWAYS IMPORT CSS
 import withClass from '../../../hoc/WithClass'
 import Aux from '../../../hoc/Aux'
+import { AuthContext } from "../../../containers/App";
 
 class Person extends Component {
 
@@ -41,6 +42,9 @@ class Person extends Component {
         console.log('[Person.js] Inside render()');
         return (
             <Aux classes={classes.Person}>
+                <AuthContext.Consumer>
+                    {auth => auth ? <p>I'm Authenticated!</p> : null} {/*this is part of the global context api setting*/}
+                </AuthContext.Consumer>
                 <p onClick={this.props.click}> I am {this.props.name} and i am {this.props.age} years old!</p>
                 {/*to use js stuff inline, wrap in curly braces, can only do simple expressions for now*/}
                 <p>{this.props.children}</p> {/* children refers to any elements between the opening and closing tags of component*/}

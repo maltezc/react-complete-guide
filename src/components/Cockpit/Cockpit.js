@@ -25,6 +25,8 @@ const cockpit = ( props ) => { // "props" needs to be in the () if editing props
         <button
               className={btnClass}
               onClick={props.clicked}>Toggle Persons</button> {/*dont add () after this.switchNameHandler. it will execute when the DOM is loaded*/}
+        <button onClick={props.login}>Log In</button>
+
         </Aux>
     );
 };
