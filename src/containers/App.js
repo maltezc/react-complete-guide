@@ -7,7 +7,7 @@ import Cockpit from '../components/Cockpit/Cockpit';
 // use functional components wherever possible
 
 import Aux from '../hoc/Aux'
-import withClass from '../hoc/withClass'
+import withClass from '../hoc/WithClass'
 
 class App extends PureComponent {
     constructor(props) {

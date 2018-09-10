@@ -4,7 +4,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
 import classes from './Person.css'; // MUST ALWAYS IMPORT CSS
-import withClass from '../../../hoc/withClass'
+import withClass from '../../../hoc/WithClass'
 import Aux from '../../../hoc/Aux'
 
 class Person extends Component {
@@ -12,6 +12,7 @@ class Person extends Component {
     constructor(props) {
         super(props);
         console.log('[Person.js] Inside Constructor', props)
+        this.inputElement = React.createRef();
     }
 
 
@@ -22,8 +23,12 @@ class Person extends Component {
     componentDidMount() {
         console.log('[Person.js] Inside componentDidMount()');
         if ( this.props.position === 0 ) {
-            this.inputElement.focus();
+            this.inputElement.current.focus();
         };
+    }
+
+    focus() {
+        this.inputElement.current.focus();
     }
 
     // componentWillReceiveProps(nextProps) {
@@ -40,7 +45,7 @@ class Person extends Component {
                 {/*to use js stuff inline, wrap in curly braces, can only do simple expressions for now*/}
                 <p>{this.props.children}</p> {/* children refers to any elements between the opening and closing tags of component*/}
                 <input
-                    ref={(inp) => { this.inputElement = inp}} // references are only available in STATEFUL (class or extends) components
+                    ref={this.inputElement}// references are only available in STATEFUL (class or extends) components
                     type="text"
                     onChange={this.props.changed}
                     value={this.props.name} />
